@@ -20,28 +20,31 @@ public class BulletFactory : MonoBehaviour
     {
         playerBulletSprite = Resources.Load<Sprite>("Sprites/Bullet");
         enemyBulletSprite = Resources.Load<Sprite>("Sprites/EnemySmallBullet");
-        bulletPrefab = Resources.Load<GameObject>("Prefabs/PlayerBullet");
+        bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
         bulletParent = GameObject.Find("Bullets").transform;
     }
 
     public GameObject CreateBullet(BulletType type)
     {
-        GameObject bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, bulletParent); ;
+        GameObject bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, bulletParent);
+        bullet.GetComponent<BulletBehaviour>().bulletType = type;
 
-        switch(type)
+        switch (type)
         {
             case BulletType.PLAYER:
                 bullet.GetComponent<SpriteRenderer>().sprite = playerBulletSprite;
                 bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.UP);
+                bullet.name = "PlayerBullet";
                 break;
             case BulletType.ENEMY:
                 bullet.GetComponent<SpriteRenderer>().sprite = enemyBulletSprite;
                 bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.DOWN);
                 bullet.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+                bullet.name = "EnemyBullet";
                 break;
         }
 
-        bullet.SetActive(true);
+        bullet.SetActive(false);
         return bullet;
     }
 }

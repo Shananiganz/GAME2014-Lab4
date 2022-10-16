@@ -16,12 +16,12 @@ public class BulletBehaviour : MonoBehaviour
     public BulletDirection bulletDirection;
     public BulletManager bulletManager;
     public ScreenBounds bounds;
+    public BulletType bulletType;
 
     public Vector3 velocity;
 
     void Start()
     {
-        SetDirection(bulletDirection);
         bulletManager = FindObjectOfType<BulletManager>();
     }
 
@@ -41,7 +41,7 @@ public class BulletBehaviour : MonoBehaviour
         if((transform.position.x > bounds.horizontal.max) || (transform.position.x < bounds.horizontal.min) || 
             (transform.position.y > bounds.vertical.max) || (transform.position.y < bounds.vertical.min))
         {
-            bulletManager.ReturnBullet(this.gameObject);
+            bulletManager.ReturnBullet(this.gameObject, bulletType);
         }
     }
 
@@ -66,6 +66,9 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        bulletManager.ReturnBullet(this.gameObject);
+        if((bulletType == BulletType.PLAYER) || (bulletType == BulletType.ENEMY && collision.gameObject.CompareTag("Player")))
+        {
+            bulletManager.ReturnBullet(this.gameObject, bulletType);
+        }
     }
 }

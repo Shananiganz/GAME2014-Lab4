@@ -9,17 +9,21 @@ public class EnemyBehaviour : MonoBehaviour
     public Boundary screenBounds;
     public float horizontalSpeed;
     public float verticalSpeed;
-
     public Color randomColor;
-
     public SpriteRenderer spriteRenderer;
+
+    [Header("Bullet Properties")]
+    public Transform bulletSpawnPoint;
+    public BulletManager bulletManager;
+    public float fireRate = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        bulletManager = FindObjectOfType<BulletManager>();
         ResetEnemy();
-
+        InvokeRepeating("FireBullets", 0.0f, fireRate);
     }
 
     // Update is called once per frame
@@ -62,5 +66,10 @@ public class EnemyBehaviour : MonoBehaviour
 
         randomColor = colorArray[Random.Range(0, 6)];
         spriteRenderer.material.SetColor("_Color", randomColor);
+    }
+
+    void FireBullets()
+    {
+        var bullet = bulletManager.GetBullet(bulletSpawnPoint.position, BulletType.ENEMY);
     }
 }
