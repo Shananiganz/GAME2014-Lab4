@@ -14,11 +14,11 @@ public class BulletBehaviour : MonoBehaviour
     [Header("Bullet Properties")]
     public float speed;
     public BulletDirection bulletDirection;
-    public BulletManager bulletManager;
     public ScreenBounds bounds;
     public BulletType bulletType;
 
-    public Vector3 velocity;
+    private Vector3 velocity;
+    private BulletManager bulletManager;
 
     void Start()
     {

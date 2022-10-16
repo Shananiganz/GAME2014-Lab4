@@ -10,12 +10,13 @@ public class EnemyBehaviour : MonoBehaviour
     public float horizontalSpeed;
     public float verticalSpeed;
     public Color randomColor;
-    public SpriteRenderer spriteRenderer;
 
     [Header("Bullet Properties")]
     public Transform bulletSpawnPoint;
-    public BulletManager bulletManager;
     public float fireRate = 0.2f;
+
+    private SpriteRenderer spriteRenderer;
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()

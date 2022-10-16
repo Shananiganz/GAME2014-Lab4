@@ -16,7 +16,6 @@ public class BulletManager : MonoBehaviour
     public int activeEnemyBullets = 0;
 
     private BulletFactory factory;
-
     private Queue<GameObject> playerBulletPool;
     private Queue<GameObject> enemyBulletPool;
 

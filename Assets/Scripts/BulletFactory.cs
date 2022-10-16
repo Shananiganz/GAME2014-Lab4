@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public Sprite playerBulletSprite;
-    public Sprite enemyBulletSprite;
-    public Transform bulletParent;
+    private GameObject bulletPrefab;
+    private Sprite playerBulletSprite;
+    private Sprite enemyBulletSprite;
+    private Transform bulletParent;
 
     void Start()
     {

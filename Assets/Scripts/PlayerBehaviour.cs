@@ -9,14 +9,14 @@ public class PlayerBehaviour : MonoBehaviour
     public Boundary boundary;
     public float verticalPosition;
     public bool usingMobileInput = false;
-    public ScoreManager scoreManager;
 
     [Header("Bullet Properties")]
     public Transform bulletSpawnPoint;
-    public BulletManager bulletManager;
     public float fireRate = 0.2f;
 
     private Camera camera;
+    private ScoreManager scoreManager;
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()
